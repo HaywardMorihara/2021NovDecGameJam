@@ -11,7 +11,13 @@ config_version=4
 [application]
 
 config/name="2021NovDecGameJam"
+run/main_scene="res://game/Game.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=480
+window/size/height=320
 
 [physics]
 
