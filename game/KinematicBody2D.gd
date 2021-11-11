@@ -28,3 +28,20 @@ func _get_input():
 func _physics_process(delta):
 	_get_input()
 	velocity = move_and_slide(velocity)
+	# TODO Probably should have this somehwere else...but I think it needs to
+	# be part of _physics_process for optmization
+	if velocity.length() == 0:
+		# TODO Point this in the direction that the player was going last
+		$AnimatedSprite.animation = "default"
+	else:		
+		if abs(velocity.x) >= abs(velocity.y):
+			if velocity.x < 0:
+				$AnimatedSprite.animation = "left"
+			else:
+				$AnimatedSprite.animation = "right"
+		else:
+			if velocity.y < 0:
+				$AnimatedSprite.animation = "up"
+			else:
+				$AnimatedSprite.animation = "down"
+		$AnimatedSprite.playing = true
