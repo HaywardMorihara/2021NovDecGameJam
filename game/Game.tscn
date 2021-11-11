@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://assets/sprites/snow-tilemap.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/character.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://assets/sprites/main-tree.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/small-tree.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/lamp-post.png" type="Texture" id=7]
+[ext_resource path="res://assets/sound/music/Deck the Halls.ogg" type="AudioStream" id=8]
+[ext_resource path="res://assets/sound/sfx/Corsica_S-Walking_in_Snow/Corsica_S-Walking_on_snow_covered_gravel_01.wav" type="AudioStream" id=9]
 
 [sub_resource type="TileSet" id=1]
 0/name = "snow-tilemap.png 0"
@@ -219,6 +221,10 @@ frames = SubResource( 6 )
 speed_scale = 2.0
 playing = true
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="YSort/KinematicBody2D"]
+stream = ExtResource( 9 )
+attenuation = 0.870551
+
 [node name="StaticBody2D" type="StaticBody2D" parent="YSort"]
 position = Vector2( 119, 47 )
 __meta__ = {
@@ -273,3 +279,7 @@ amount = 4500
 lifetime = 9.0
 preprocess = 10.0
 process_material = SubResource( 10 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true

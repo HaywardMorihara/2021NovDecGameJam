@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Deck the Halls.ogg-e82de3fbb86c93124105264be963844a.oggstr"
+
+[deps]
+
+source_file="res://assets/sound/music/Deck the Halls.ogg"
+dest_files=[ "res://.import/Deck the Halls.ogg-e82de3fbb86c93124105264be963844a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

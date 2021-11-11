@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Corsica_S-Walking_on_snow_covered_gravel_01.wav-5e0134da0ed1cf8e4ccbad15bc1b3f10.sample"
+
+[deps]
+
+source_file="res://assets/sound/sfx/Corsica_S-Walking_in_Snow/Corsica_S-Walking_on_snow_covered_gravel_01.wav"
+dest_files=[ "res://.import/Corsica_S-Walking_on_snow_covered_gravel_01.wav-5e0134da0ed1cf8e4ccbad15bc1b3f10.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

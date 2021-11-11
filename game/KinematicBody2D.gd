@@ -45,3 +45,5 @@ func _physics_process(delta):
 			else:
 				$AnimatedSprite.animation = "down"
 		$AnimatedSprite.playing = true
+#		if not $AudioStreamPlayer2D.playing:
+#			$AudioStreamPlayer2D.play()
