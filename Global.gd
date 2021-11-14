@@ -1,5 +1,8 @@
 extends Node
 
+var village_names := []
+var village_data := {}
+var village_objects := []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,20 +19,34 @@ func _ready():
 	})
 	
 	# https://silentwolf.com/playerdata
+	# NOTE: HAD TO ADD THE HTTPREQUEST BEING CREATED IN Players.Data TO THE TREE (with add_child())
+	
+	# POST Experimentation
 	# Made incorrect assumptions about how it works
 #	SilentWolf.Players.post_player_data("public", {"villageNames":["testing20211114"]}, {"hello": "world"})
 	# It seems like this doesn't actually work - looked at the code and doesn't seem to actually support 'character_data'
 #	SilentWolf.Players.post_player_data("public", {"hello": "world"}, "testing20211114")
-
+	
+	# POST "FINAL"
 	# Note: If doing this, would be worried about overwriting the whole village list...would probably want some logic to ensure this doesn't happen
 #	SilentWolf.Players.post_player_data("public", {"villageNames": ["testing20211114"]})
-	
-	print("here?")
-	yield(SilentWolf.Players.get_player_data("public"), "sw_player_data_received")
-	print("here?")
-	print("Player data: " + str(SilentWolf.Players.player_data))
+#	SilentWolf.Players.post_player_data("testing20211114", {"objects": [{"id": "001", "x": 0.0, "y": 0.0}]})	
 
-	# NEED TO ADD TO TREE
+	# GET
+	yield(SilentWolf.Players.get_player_data("public"), "sw_player_data_received")
+	var public_data = SilentWolf.Players.player_data
+	village_names = public_data.get("villageNames")
+	print("Village Names: " + str(village_names))
+	
+	yield(SilentWolf.Players.get_player_data(village_names[0]), "sw_player_data_received")
+	village_data = SilentWolf.Players.player_data
+	village_data = SilentWolf.Players.player_data
+	print("Village data: " + str(village_data))
+	village_objects = village_data.get("objects")
+	print("Village objects: " + str(village_objects))
+
+	# FROM DEBUGGING
+	# NEEDED TO ADD TO TREE
 #	var node := HTTPRequest.new()
 ##	add_child(node)
 #	print("here")
