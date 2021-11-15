@@ -15,6 +15,10 @@ func _process(delta):
 
 func _get_input():
 	velocity = Vector2.ZERO
+	
+	if Global.is_placement_mode:
+		return
+	
 	if Input.is_action_pressed('ui_right'):
 		velocity.x += 1
 	if Input.is_action_pressed('ui_left'):
@@ -26,6 +30,12 @@ func _get_input():
 	velocity = velocity.normalized() * speed
 	
 func _physics_process(delta):
+	if Global.is_placement_mode:
+		$AnimatedSprite.animation = "up"
+		$AnimatedSprite.frame = 0
+		$AnimatedSprite.playing = false
+		return
+		
 	_get_input()
 	velocity = move_and_slide(velocity)
 	# TODO Probably should have this somehwere else...but I think it needs to

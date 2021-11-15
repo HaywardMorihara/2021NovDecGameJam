@@ -1,8 +1,12 @@
 extends Node
 
+# Data
 var village_names := []
 var village_data := {}
 var village_objects := []
+
+# Game State
+var is_placement_mode := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
