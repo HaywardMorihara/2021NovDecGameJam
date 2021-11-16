@@ -7,6 +7,7 @@ var village_objects := []
 
 # Game State
 var is_placement_mode := false
+var is_removal_mode := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

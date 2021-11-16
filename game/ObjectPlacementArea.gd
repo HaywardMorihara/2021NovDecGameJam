@@ -15,7 +15,7 @@ var object_for_placement = null
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Global.is_placement_mode and object_for_placement != null:
+	if Global.is_placement_mode and not Global.is_removal_mode and object_for_placement and is_instance_valid(object_for_placement):
 		object_for_placement.global_position = get_global_mouse_position()
 
 func _unhandled_input(event):
@@ -23,9 +23,16 @@ func _unhandled_input(event):
 		if not Global.is_placement_mode:
 			_enter_placement_mode()
 		elif Global.is_placement_mode:
+			_exit_removal_mode()
 			_exit_placement_mode()
 	
 	if Global.is_placement_mode:
+		if event.is_action_pressed("toggle_removal_mode"):
+			if not Global.is_removal_mode:
+				_enter_removal_mode()
+			elif Global.is_removal_mode:
+				_exit_removal_mode()
+				_enter_placement_mode()
 		if event.is_action_pressed("ui_right"):
 			_cycle_right()
 		
@@ -37,12 +44,23 @@ func _enter_placement_mode():
 func _exit_placement_mode():
 	print("Exiting placement mode...")
 	Global.is_placement_mode = false
+	if object_for_placement and is_instance_valid(object_for_placement):
+		object_for_placement.queue_free()
+	
+func _enter_removal_mode():
+	print("Entering removal mode...")
+	Global.is_removal_mode = true
 	object_for_placement.queue_free()
+	
+func _exit_removal_mode():
+	print("Exiting remvoal mode...")
+	Global.is_removal_mode = false
 
 func _place_object(scene_name, global_pos):
 	print("Placing scene %s" % scene_name)
 	var PLACEABLE_OBJECT_SCENE := load(scene_name)
 	var object = PLACEABLE_OBJECT_SCENE.instance()
+	object.get_node("ObjectPlacement").is_placed = true
 	object.set_global_position(global_pos)
 	add_child(object)
 
