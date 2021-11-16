@@ -10,8 +10,18 @@ var scene_current_index = 0
 var object_for_placement = null
 
 # Called when the node enters the scene tree for the first time.
-#func _ready():
-#	pass # Replace with function body.
+func _ready():
+	_render_village_data()
+	
+# TODO 
+func _render_village_data():
+	# TODO Shouldn't be hardcoded to town
+	var village_objects = Global.village_data.get("town").get("objects")
+	for object in village_objects:
+		print("Object: %s" % object)
+		# TODO Should map IDs or something
+		if object.get("object_type") == "001":
+			_place_object("res://game/objects/LampPost.tscn", Vector2(object.get("x"), object.get("y")))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

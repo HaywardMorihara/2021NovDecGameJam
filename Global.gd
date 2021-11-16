@@ -3,14 +3,40 @@ extends Node
 # Data
 var village_names := []
 var village_data := {}
-var village_objects := []
 
 # Game State
 var is_placement_mode := false
 var is_removal_mode := false
 
+
+# DEBUG
+var village_test_data := {
+	"town": {
+		"objects": [
+			{
+				"object_type": "001",
+				"x": 0.0,
+				"y": 0.0
+			}
+		]
+	},
+	"houses": [
+		{
+			"house_id": "random? increment? player assinged?",
+			"house_type": "001",
+			"x": 20.0,
+			"y": 0.0
+		}
+	]
+}
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# DEBUG
+	if village_test_data:
+		village_data = village_test_data
+	
 	var api_key_file = File.new()
 	api_key_file.open("res://api_key.env", File.READ)
 	var api_key = api_key_file.get_line()
@@ -38,17 +64,17 @@ func _ready():
 #	SilentWolf.Players.post_player_data("testing20211114", {"objects": [{"id": "001", "x": 0.0, "y": 0.0}]})	
 
 	# GET
-	yield(SilentWolf.Players.get_player_data("public"), "sw_player_data_received")
-	var public_data = SilentWolf.Players.player_data
-	village_names = public_data.get("villageNames")
-	print("Village Names: " + str(village_names))
-	
-	yield(SilentWolf.Players.get_player_data(village_names[0]), "sw_player_data_received")
-	village_data = SilentWolf.Players.player_data
-	village_data = SilentWolf.Players.player_data
-	print("Village data: " + str(village_data))
-	village_objects = village_data.get("objects")
-	print("Village objects: " + str(village_objects))
+#	yield(SilentWolf.Players.get_player_data("public"), "sw_player_data_received")
+#	var public_data = SilentWolf.Players.player_data
+#	village_names = public_data.get("villageNames")
+#	print("Village Names: " + str(village_names))
+#
+#	yield(SilentWolf.Players.get_player_data(village_names[0]), "sw_player_data_received")
+#	village_data = SilentWolf.Players.player_data
+#	village_data = SilentWolf.Players.player_data
+#	print("Village data: " + str(village_data))
+#	village_objects = village_data.get("objects")
+#	print("Village objects: " + str(village_objects))
 
 	# FROM DEBUGGING
 	# NEEDED TO ADD TO TREE
