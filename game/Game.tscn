@@ -4,7 +4,7 @@
 [ext_resource path="res://game/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game/ObjectPlacementArea.gd" type="Script" id=3]
 [ext_resource path="res://assets/sprites/house1.png" type="Texture" id=4]
-[ext_resource path="res://assets/sprites/main-tree.png" type="Texture" id=5]
+[ext_resource path="res://game/objects/BigTree.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/sprites/small-tree.png" type="Texture" id=6]
 [ext_resource path="res://assets/sound/music/Deck the Halls.ogg" type="AudioStream" id=8]
 [ext_resource path="res://assets/sprites/path-tilemap.png" type="Texture" id=10]
@@ -179,18 +179,7 @@ speed_scale = 3.0
 position = Vector2( 0, 9 )
 shape = SubResource( 14 )
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="YSort/ObjectPlacementArea"]
-position = Vector2( 183, 81 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="YSort/ObjectPlacementArea/StaticBody2D2"]
-build_mode = 1
-polygon = PoolVector2Array( -8, 23, -4, 27, 8, 25, 5, 22, 6, 19, 15, 20, 23, 15, 17, 4, -15, 5, -22, 15, -14, 20, -5, 19, -5, 21 )
-
-[node name="Sprite" type="Sprite" parent="YSort/ObjectPlacementArea/StaticBody2D2"]
-texture = ExtResource( 5 )
+[node name="BigTree" parent="YSort/ObjectPlacementArea" instance=ExtResource( 5 )]
 
 [node name="Particles2D" type="Particles2D" parent="."]
 amount = 4500

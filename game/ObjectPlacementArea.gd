@@ -3,7 +3,8 @@ extends YSort
 #const OBJECT_PLACEMENT_SCENE := preload("res://game/ObjectPlacement.tscn")
 const SCENES_FOR_PLACEMENT := [
 	preload("res://game/objects/LampPost.tscn"),
-	preload("res://game/objects/Tree1.tscn")
+	preload("res://game/objects/Tree1.tscn"),
+	preload("res://game/objects/BigTree.tscn"),
 ]
 
 var scene_current_index = 0
