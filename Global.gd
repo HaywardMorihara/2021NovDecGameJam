@@ -20,3 +20,4 @@ func _ready():
 	})
 
 	VillageData.load_village_data()
+	VillageData.parse_village_data()

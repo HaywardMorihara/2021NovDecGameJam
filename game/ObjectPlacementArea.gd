@@ -11,12 +11,12 @@ func _ready():
 func _render_village_data():
 	if not Global.in_house:
 		print("Rendering village data")
-		var village_objects = VillageData.village_data.get("village").get("objects")
-		for object_type in village_objects.keys():
-			for object in village_objects[object_type]:
-				# TODO Should map IDs or something
-				_place_object("res://game/objects/LampPost.tscn", Vector2(object.get("x"), object.get("y")))
+		for village_object_id in VillageData.village_map.get('objects'):
+			var object = VillageData.village_map.get('objects').get(village_object_id)
+			print("Rendering %s" % object)
+			_place_object(object.get("type"), Vector2(object.get("x"), object.get("y")))
 	else:
+		# TODO
 		print("Rendering house data %s" % Global.in_house)
 	
 
@@ -87,10 +87,14 @@ func _exit_removal_mode():
 	print("Exiting removal mode...")
 	Global.is_removal_mode = false
 
-func _place_object(scene_name, global_pos):
-	print("Placing scene %s" % scene_name)
-	var PLACEABLE_OBJECT_SCENE := load(scene_name)
-	var object = PLACEABLE_OBJECT_SCENE.instance()
+func _place_object(type_id, global_pos):
+	var scene
+	if type_id[0] == 'h':
+		scene = PlaceableObjects.HOUSES_FOR_PLACEMENT.get(type_id)
+	else:
+		scene = PlaceableObjects.OBJECTS_FOR_PLACEMENT.get(type_id)
+	print("Placing scene %s" % scene)
+	var object = scene.instance()
 	object.get_node("ObjectPlacement").is_placed = true
 	object.set_global_position(global_pos)
 	add_child(object)
@@ -99,9 +103,13 @@ func _init_object_for_placement():
 	if object_for_placement and is_instance_valid(object_for_placement):
 		object_for_placement.queue_free()
 	if not Global.is_house_placement_mode:
-		object_for_placement = PlaceableObjects.OBJECTS_FOR_PLACEMENT[object_scene_current_index].instance()
+		var object_scene_key = PlaceableObjects.OBJECTS_FOR_PLACEMENT_KEYS[object_scene_current_index]
+		object_for_placement = PlaceableObjects.OBJECTS_FOR_PLACEMENT[object_scene_key].instance()		
+		object_for_placement.get_node("ObjectPlacement").type_id = object_scene_key
 	elif Global.is_house_placement_mode:
-		object_for_placement = PlaceableObjects.HOUSES_FOR_PLACEMENT[house_scene_current_index].instance()
+		var house_scene_key = PlaceableObjects.HOUSES_FOR_PLACEMENT_KEYS[house_scene_current_index]
+		object_for_placement = PlaceableObjects.HOUSES_FOR_PLACEMENT[house_scene_key].instance()
+		object_for_placement.get_node("ObjectPlacement").type_id = house_scene_key
 	object_for_placement.get_node("ObjectPlacement").connect("object_placed", self, "_place_object")
 	add_child(object_for_placement)
 

@@ -4,6 +4,10 @@ extends Node
 var village_names := []
 var village_data := {}
 
+# Dicts
+var village_map := {}
+var house_maps := {}
+
 func load_village_data():
 	print("Loading village data...")
 	
@@ -19,8 +23,70 @@ func load_village_data():
 		print("ERROR parsing JSON %s" % text)
 		return
 	village_data = data_parse.result
+	print("Village Data...")
 	print(village_data)
 	
+func parse_village_data():
+	# Parse Village Data
+#{
+#	"objects": {
+#		"32141": {
+#			"type": "001"
+#			"x": 0.0,
+#			"y": 0.0
+#		} 
+#	},
+#	"houses": {
+#		"634712846": {
+#			"type": "001",
+#			"x": 10.0,
+#			"y": 10.0
+#		}
+#	}
+#}
+	village_map['objects'] = {}
+	village_map['houses'] = {}
+	# Parse Village Data Objects
+	var village_objects = village_data.get('village').get('objects')
+	for object_type in village_objects.keys():
+		for object in village_objects.get(object_type):
+			var id = str(object.hash())
+			village_map['objects'][id] = object
+			village_map['objects'][id]['type'] = object_type
+	# Parse Village Houses
+	var village_houses = village_data.get('village').get('houses')
+	for house_type in village_houses.keys():
+		for house in village_houses.get(house_type):
+			var id = str(house.get('id'))
+			village_map['houses'][id] = house
+			village_map['houses'][id]['type'] = house_type
+			
+	# Parse House Data
+#{
+#	"634712846": {
+#		"objects": {
+#			"32141": {
+#				"type": "001"
+#				"x": 0.0,
+#				"y": 0.0
+#			} 
+#		}
+#	}	
+#}
+	var house_data = village_data.get('houses')
+	for house_id in house_data.keys():
+		house_maps[house_id] = {'objects':{}}
+		var house_objects = house_data.get(house_id).get('objects')
+		for object_type in house_objects.keys():
+			for object in house_objects.get(object_type):
+				var id = str(object.hash())
+				house_maps[house_id]['objects'][id] = object
+				house_maps[house_id]['objects'][id]['type'] = object_type
+				
+	print("Village Map...")
+	print(village_map)
+	print("House Maps...")
+	print(house_maps)
 	# https://silentwolf.com/playerdata
 	# NOTE: HAD TO ADD THE HTTPREQUEST BEING CREATED IN Players.Data TO THE TREE (with add_child())
 	
