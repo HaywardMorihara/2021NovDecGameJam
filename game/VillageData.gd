@@ -12,7 +12,7 @@ func load_village_data():
 	print("Loading village data...")
 	
 	var file = File.new()
-	if file.open("res://villages/test_village_1.json", file.READ) != OK:
+	if file.open("res://villages/test_village_2.json", file.READ) != OK:
 		print("ERROR loading file")
 		return
 	var text = file.get_as_text()
@@ -87,6 +87,77 @@ func parse_village_data():
 	print(village_map)
 	print("House Maps...")
 	print(house_maps)
+	
+	
+#{
+#	"objects": {
+#		"32141": {
+#			"type": "001"
+#			"x": 0.0,
+#			"y": 0.0
+#		} 
+#	},
+#	"houses": {
+#		"634712846": {
+#			"type": "001",
+#			"x": 10.0,
+#			"y": 10.0
+#		}
+#	}
+#}
+#{
+#	"634712846": {
+#		"objects": {
+#			"32141": {
+#				"type": "001"
+#				"x": 0.0,
+#				"y": 0.0
+#			} 
+#		}
+#	}	
+#}
+func serialize_village_data():
+	village_data = {}
+	village_data['village'] = {}
+	village_data['village']['objects'] = {}
+	village_data['village']['houses'] = {}
+	village_data['houses'] = {}
+	for object_id in village_map.get('objects').keys():
+		var object_data = village_map.get('objects').get(object_id)
+		if not village_data['village']['objects'].has(object_data.get('type')):
+			village_data['village']['objects'][object_data.get('type')] = []
+		village_data['village']['objects'][object_data.get('type')].append({
+			"x": object_data.get('x'),
+			"y": object_data.get('y')
+		})
+	for house_id in village_map.get('houses').keys():
+		var house_data = village_map.get('houses').get(house_id)
+		if not village_data['village']['houses'].has(house_data.get('type')):
+			village_data['village']['houses'][house_data.get('type')] = []
+		village_data['village']['houses'][house_data.get('type')].append({
+			"id": house_id,
+			"x": house_data.get('x'),
+			"y": house_data.get('y')
+		})
+	for house_id in house_maps.keys():
+		village_data['houses'][house_id] = {"objects":{}}
+		for object_id in house_maps.get(house_id).get('objects').keys():
+			var object_data = house_maps.get(house_id).get('objects').get(object_id)
+			if not village_data['houses'][house_id]['objects'].has(object_data.get('type')):
+				village_data['houses'][house_id]['objects'][object_data.get('type')] = []
+			village_data['houses'][house_id]['objects'][object_data.get('type')].append({
+				"x": object_data.get('x'),
+				"y": object_data.get('y')
+			})
+	print("Serialized data: %s" % village_data)
+	
+func save_village_data_local():
+	serialize_village_data()
+	var file = File.new()
+	file.open("res://villages/test_village_2.json", File.WRITE)
+	file.store_line(to_json(village_data))
+	file.close()
+	
 	# https://silentwolf.com/playerdata
 	# NOTE: HAD TO ADD THE HTTPREQUEST BEING CREATED IN Players.Data TO THE TREE (with add_child())
 	

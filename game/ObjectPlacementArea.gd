@@ -56,6 +56,10 @@ func _unhandled_input(event):
 				_enter_placement_mode()
 		if event.is_action_pressed("ui_right"):
 			_cycle_right()
+	
+	# TODO DEBUGGING - should remove
+	if event.is_action_pressed("save_village_data"):
+		VillageData.save_village_data_local()
 		
 func _enter_placement_mode():
 	print("Entering placement mode!")
@@ -143,6 +147,7 @@ func _remove_object(type, id):
 	else:
 		if type[0] == 'h':
 			VillageData.village_map['houses'].erase(id)
+			VillageData.house_maps.erase(id)
 		else:
 			print("Removing from the objects of the village map")
 			print(VillageData.village_map['objects'].has(id))
