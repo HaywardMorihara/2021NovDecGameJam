@@ -14,7 +14,11 @@ func _render_village_data():
 		for village_object_id in VillageData.village_map.get('objects'):
 			var object = VillageData.village_map.get('objects').get(village_object_id)
 			print("Rendering %s" % object)
-			_place_object(object.get("type"), Vector2(object.get("x"), object.get("y")))
+			_place_object(object.get("type"), Vector2(object.get("x"), object.get("y")), village_object_id)
+		for house_id in VillageData.village_map.get('houses'):
+			var house = VillageData.village_map.get('houses').get(house_id)
+			print("Rendering %s" % house)
+			_place_object(house.get("type"), Vector2(house.get("x"), house.get("y")), house_id)
 	else:
 		# TODO
 		print("Rendering house data %s" % Global.in_house)
@@ -87,7 +91,7 @@ func _exit_removal_mode():
 	print("Exiting removal mode...")
 	Global.is_removal_mode = false
 
-func _place_object(type_id, global_pos):
+func _place_object(type_id, global_pos, id=""):
 	var scene
 	if type_id[0] == 'h':
 		scene = PlaceableObjects.HOUSES_FOR_PLACEMENT.get(type_id)
@@ -96,8 +100,58 @@ func _place_object(type_id, global_pos):
 	print("Placing scene %s" % scene)
 	var object = scene.instance()
 	object.get_node("ObjectPlacement").is_placed = true
+	object.get_node("ObjectPlacement").connect("object_removed", self, "_remove_object")
 	object.set_global_position(global_pos)
+	if not id:
+		var pos_dict := {}
+		pos_dict['x'] = global_pos.x
+		pos_dict['y'] = global_pos.y
+		id = str(pos_dict.hash())
+		print("Created ID %s" % id)
+	object.get_node("ObjectPlacement").id = id
+	object.get_node("ObjectPlacement").type_id = type_id
 	add_child(object)
+	if Global.in_house:
+		VillageData.house_maps[Global.in_house]['objects'][id] = {
+			"type": type_id,
+			"x": global_pos.x,
+			"y": global_pos.y,
+		}
+		print("Current map: %s" % VillageData.houses_map[Global.in_house])
+	else:
+		print("Adding %s of type %s to the VillageMap" % [id, type_id])
+		if type_id[0] == 'h':
+			VillageData.village_map['houses'][id] = {
+				"type": type_id,
+				"x": global_pos.x,
+				"y": global_pos.y
+			}
+		else:
+			VillageData.village_map['objects'][id] = {
+				"type": type_id,
+				"x": global_pos.x,
+				"y": global_pos.y
+			}
+		print("Current map: %s" % VillageData.village_map)
+
+func _remove_object(type, id):
+	print("Removing %s of type %s" % [id, type])
+	if Global.in_house:
+		print("Remove from house %s" % Global.in_house)
+		VillageData.house_maps[Global.in_house]['objects'].erase(id)
+		print("Current map: %s" % VillageData.house_map[Global.in_house])
+	else:
+		if type[0] == 'h':
+			VillageData.village_map['houses'].erase(id)
+		else:
+			print("Removing from the objects of the village map")
+			print(VillageData.village_map['objects'].has(id))
+			print(VillageData.village_map['objects'].has(str(id)))
+			print(typeof(id))
+			print(typeof(VillageData.village_map['objects'].keys()[0]))
+			var was_erased = VillageData.village_map['objects'].erase(id)
+			print("Was erased: %s" % was_erased)
+		print("Current map: %s" % VillageData.village_map)
 
 func _init_object_for_placement():
 	if object_for_placement and is_instance_valid(object_for_placement):
