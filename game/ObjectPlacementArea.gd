@@ -58,10 +58,6 @@ func _unhandled_input(event):
 		if event.is_action_pressed("ui_right"):
 			_cycle_right()
 	
-	# TODO DEBUGGING - should remove
-	if event.is_action_pressed("save_village_data"):
-		VillageData.save_village_data_local()
-		VillageData.upload_data()
 		
 func _enter_placement_mode():
 	print("Entering placement mode!")
