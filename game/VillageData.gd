@@ -1,10 +1,12 @@
 extends Node
 
 # Data
-var village_names := []
+var villages := [{"id": "VillageABC", "name": "Testing 11/20/2021"}] # Dicts w ids & names
 var village_data := {}
 
 # Dicts
+var village_id := "VillageABC"
+var village_name := "Testing 11/20/2021"
 var village_map := {}
 var house_maps := {}
 
@@ -27,7 +29,7 @@ func load_village_data():
 	print(village_data)
 	
 func parse_village_data():
-	# Parse Village Data
+	# Parsed Village Data
 #{
 #	"objects": {
 #		"32141": {
@@ -158,6 +160,9 @@ func save_village_data_local():
 	file.store_line(to_json(village_data))
 	file.close()
 	
+	
+	
+
 	# https://silentwolf.com/playerdata
 	# NOTE: HAD TO ADD THE HTTPREQUEST BEING CREATED IN Players.Data TO THE TREE (with add_child())
 	
@@ -171,16 +176,25 @@ func save_village_data_local():
 	# Note: If doing this, would be worried about overwriting the whole village list...would probably want some logic to ensure this doesn't happen
 #	SilentWolf.Players.post_player_data("public", {"villageNames": ["testing20211114"]})
 #	SilentWolf.Players.post_player_data("testing20211114", {"objects": [{"id": "001", "x": 0.0, "y": 0.0}]})	
+func upload_data():
+	print("Uploading to SilentWolf...")
+	SilentWolf.Players.post_player_data("villages", {"villages": villages})
+	SilentWolf.Players.post_player_data(village_id, to_json(village_data))
+	print("Upload complete!")
 
-	# GET
-#	yield(SilentWolf.Players.get_player_data("public"), "sw_player_data_received")
-#	var public_data = SilentWolf.Players.player_data
-#	village_names = public_data.get("villageNames")
-#	print("Village Names: " + str(village_names))
-#
-#	yield(SilentWolf.Players.get_player_data(village_names[0]), "sw_player_data_received")
-#	village_data = SilentWolf.Players.player_data
-#	village_data = SilentWolf.Players.player_data
-#	print("Village data: " + str(village_data))
-#	village_objects = village_data.get("objects")
-#	print("Village objects: " + str(village_objects))
+func download_and_parse_data():
+	print("Downloading from SilentWolf...")
+	# Villages
+	yield(SilentWolf.Players.get_player_data("villages"), "sw_player_data_received")
+	var villages_data = SilentWolf.Players.player_data
+	villages = villages_data.get("villages")
+	print("Villages Downloaded: %s" % villages)
+
+	village_id = villages[0].get('id')
+	village_name = villages[0].get('name')
+	print("Fetching village data for %s" % village_id)
+	yield(SilentWolf.Players.get_player_data(village_id), "sw_player_data_received")
+	village_data = parse_json(SilentWolf.Players.player_data)
+	print("Village %s data: %s" % [village_name, village_data])
+
+	parse_village_data()

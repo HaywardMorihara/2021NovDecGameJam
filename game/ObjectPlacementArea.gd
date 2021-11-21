@@ -6,6 +6,13 @@ var house_scene_current_index = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	yield(VillageData.download_and_parse_data(), "completed")
+	var t = Timer.new()
+	t.set_wait_time(3)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	yield(t, "timeout")
 	_render_village_data()
 	
 func _render_village_data():
@@ -60,6 +67,7 @@ func _unhandled_input(event):
 	# TODO DEBUGGING - should remove
 	if event.is_action_pressed("save_village_data"):
 		VillageData.save_village_data_local()
+		VillageData.upload_data()
 		
 func _enter_placement_mode():
 	print("Entering placement mode!")
