@@ -20,6 +20,7 @@ SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 Global="*res://Global.gd"
 PlaceableObjects="*res://game/PlaceableObjects.gd"
 VillageData="*res://game/VillageData.gd"
+VillageMap="*res://game/VillageMap.gd"
 
 [display]
 

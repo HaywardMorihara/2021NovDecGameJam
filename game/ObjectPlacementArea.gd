@@ -6,18 +6,19 @@ var house_scene_current_index = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	yield(VillageData.download_and_parse_data(), "completed")
 	_render_village_data()
 	
 func _render_village_data():
+	if not VillageMap.village_id or not VillageMap.village_map:
+		return
 	if not Global.in_house:
 		print("Rendering village data")
-		for village_object_id in VillageData.village_map.get('objects'):
-			var object = VillageData.village_map.get('objects').get(village_object_id)
+		for village_object_id in VillageMap.village_map.get('objects'):
+			var object = VillageMap.village_map.get('objects').get(village_object_id)
 			print("Rendering %s" % object)
 			_place_object(object.get("type"), Vector2(object.get("x"), object.get("y")), village_object_id)
-		for house_id in VillageData.village_map.get('houses'):
-			var house = VillageData.village_map.get('houses').get(house_id)
+		for house_id in VillageMap.village_map.get('houses'):
+			var house = VillageMap.village_map.get('houses').get(house_id)
 			print("Rendering %s" % house)
 			_place_object(house.get("type"), Vector2(house.get("x"), house.get("y")), house_id)
 	else:

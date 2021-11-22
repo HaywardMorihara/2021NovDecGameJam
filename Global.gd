@@ -5,6 +5,7 @@ var is_placement_mode := false
 var is_removal_mode := false
 var is_house_placement_mode := false
 var in_house := ""
+var is_paused := false
 
 func _ready():
 	var api_key_file = File.new()

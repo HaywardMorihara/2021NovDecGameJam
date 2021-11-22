@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://game/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/character.png" type="Texture" id=2]
 [ext_resource path="res://assets/sound/sfx/Corsica_S-Walking_in_Snow/Corsica_S-Walking_on_snow_covered_gravel_01.wav" type="AudioStream" id=3]
+[ext_resource path="res://menus/InGameMenu.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.0
@@ -123,3 +124,13 @@ playing = true
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
 attenuation = 0.870551
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InGameMenu" parent="CanvasLayer" instance=ExtResource( 4 )]
+margin_left = 123.0
+margin_top = 117.0
+margin_right = 123.0
+margin_bottom = 117.0
+
+[connection signal="about_to_show" from="CanvasLayer/InGameMenu" to="CanvasLayer/InGameMenu" method="_on_InGameMenu_about_to_show"]
