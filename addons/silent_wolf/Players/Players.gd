@@ -156,6 +156,7 @@ func _on_PushPlayerData_request_completed(result, response_code, headers, body):
 			SWLogger.error("You are not authorized to call the SilentWolf API - check your API key configuration: https://silentwolf.com/playerdata")
 		else:
 			SWLogger.info("SilentWolf post player data score success: " + str(response_code))
+			print(response)
 			var player_name = response.player_name
 			emit_signal("sw_player_data_posted", player_name)
 		

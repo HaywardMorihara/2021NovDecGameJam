@@ -1,6 +1,7 @@
 extends Node
 
-
+var latest_villages := []
+var latest_village_data := {}
 
 # DEBUGGING
 func load_village_data(file_path):
@@ -33,25 +34,23 @@ func save_village_data_local(file_path):
 # https://silentwolf.com/playerdata
 # NOTE: HAD TO ADD THE HTTPREQUEST BEING CREATED IN Players.Data TO THE TREE (with add_child())
 	
-func upload_villages_data(villages):
+func upload_villages(villages):
 	print("Uploading village list to SilentWolf")
-	# TODO Download latest set of villages before uploading
 	SilentWolf.Players.post_player_data("villages", {"villages": villages})
 	
-func upload_data(this_village_id, this_village_data):
+func upload_village_data(this_village_id, this_village_data):
 	print("Uploading data about village %s to SilentWolf..." % this_village_id )
+	print("Uploading data: %s" % to_json(this_village_data))
 	SilentWolf.Players.post_player_data(this_village_id, to_json(this_village_data))
 
-func download_villages_data():
+func download_villages():
 	print("Downloading village list from SilentWolf")
 	yield(SilentWolf.Players.get_player_data("villages"), "sw_player_data_received")
 	var villages_data = SilentWolf.Players.player_data
 	var villages = villages_data.get("villages")
-	print("Villages Downloaded: %s" % villages)
-	return villages
+	latest_villages = villages
 
 func download_village_data(village_id):
 	print("Fetching village data for %s" % village_id)
 	yield(SilentWolf.Players.get_player_data(village_id), "sw_player_data_received")
-	var village_data = parse_json(SilentWolf.Players.player_data)
-	return village_data
+	latest_village_data = parse_json(SilentWolf.Players.player_data)

@@ -1,12 +1,13 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://menus/buttons/LoadVillageButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/Snowfall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://menus/SnowBackground.tscn" type="PackedScene" id=3]
+[ext_resource path="res://menus/LoadVillageMenu.gd" type="Script" id=4]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -21,11 +22,5 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
-margin_right = 69.0
-margin_bottom = 25.0
-
-[node name="Button" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
-margin_right = 69.0
-margin_bottom = 25.0
 
 [node name="Snowfall" parent="." instance=ExtResource( 2 )]
