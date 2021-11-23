@@ -12,7 +12,8 @@ func _render_village_data():
 	if not VillageMap.village_id or not VillageMap.village_map:
 		return
 	print("Rendering village for village %s, %s" % [VillageMap.village_id, VillageMap.village_name])
-	if not Global.in_house:
+	print("In house %s" % Global.in_house)
+	if Global.in_house.empty():
 		for village_object_id in VillageMap.village_map.get('objects'):
 			var object = VillageMap.village_map.get('objects').get(village_object_id)
 			print("Rendering %s" % object)
@@ -113,6 +114,7 @@ func _place_object(type_id, global_pos, id=""):
 		print("Created ID %s" % id)
 	object.get_node("ObjectPlacement").id = id
 	object.get_node("ObjectPlacement").type_id = type_id
+	object.id = id
 	add_child(object)
 	if Global.in_house:
 		VillageMap.house_maps[Global.in_house]['objects'][id] = {

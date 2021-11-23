@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://game/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://game/ObjectPlacementArea.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game/Exit.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="HouseInterior" type="Node2D"]
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 119, 145 )
+
+[node name="ObjectPlacementArea" parent="YSort" instance=ExtResource( 2 )]
+
+[node name="Exit" type="Area2D" parent="."]
+position = Vector2( 119, 166 )
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="Exit" to="Exit" method="_on_Exit_body_entered"]

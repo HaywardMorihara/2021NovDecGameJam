@@ -4,7 +4,8 @@ extends Node
 var is_placement_mode := false
 var is_removal_mode := false
 var is_house_placement_mode := false
-var in_house := ""
+var in_house: String
+var coming_from: String
 var is_paused := false
 
 func _ready():
