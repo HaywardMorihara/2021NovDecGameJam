@@ -1,20 +1,8 @@
 extends Button
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
 func _on_MainMenuButton_pressed():
+	Global.in_house = ""
+	Global.is_placement_mode = false
+	Global.is_removal_mode = false
+	Global.is_house_placement_mode = false
 	get_tree().change_scene("res://menus/MainMenu.tscn")

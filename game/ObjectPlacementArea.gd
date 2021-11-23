@@ -23,9 +23,12 @@ func _render_village_data():
 			print("Rendering %s" % house)
 			_place_object(house.get("type"), Vector2(house.get("x"), house.get("y")), house_id)
 	else:
-		# TODO
 		print("Rendering house data %s" % Global.in_house)
-	
+		if not VillageMap.house_maps.get(Global.in_house):
+			VillageMap.house_maps[Global.in_house] = {"objects": {}}
+		for house_object_id in VillageMap.house_maps.get(Global.in_house).get('objects'):
+			var object = VillageMap.house_maps.get(Global.in_house).get('objects').get(house_object_id)
+			_place_object(object.get("type"), Vector2(object.get("x"), object.get("y")), house_object_id)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -114,15 +117,16 @@ func _place_object(type_id, global_pos, id=""):
 		print("Created ID %s" % id)
 	object.get_node("ObjectPlacement").id = id
 	object.get_node("ObjectPlacement").type_id = type_id
-	object.id = id
+	if type_id[0] == 'h':
+		object.id = id
 	add_child(object)
-	if Global.in_house:
+	if not Global.in_house.empty():
 		VillageMap.house_maps[Global.in_house]['objects'][id] = {
 			"type": type_id,
 			"x": global_pos.x,
 			"y": global_pos.y,
 		}
-		print("Current map: %s" % VillageMap.houses_map[Global.in_house])
+		print("Current map: %s" % VillageMap.house_maps[Global.in_house])
 	else:
 		print("Adding %s of type %s to the VillageMap" % [id, type_id])
 		if type_id[0] == 'h':
