@@ -23,8 +23,7 @@ func load_village_data(file_path):
 
 	
 # DEBUGGING
-func save_village_data_local(file_path):
-	var village_data = VillageMap.serialize_village_data()
+func save_village_data_local(village_data, file_path):
 	var file = File.new()
 	file.open(file_path, File.WRITE)
 	file.store_line(to_json(village_data))
@@ -40,8 +39,10 @@ func upload_villages(villages):
 	
 func upload_village_data(this_village_id, this_village_data):
 	print("Uploading data about village %s to SilentWolf..." % this_village_id )
-	print("Uploading data: %s" % to_json(this_village_data))
+#	print("Uploading data: %s" % to_json(this_village_data))
 	SilentWolf.Players.post_player_data(this_village_id, to_json(this_village_data))
+	# DEBUG
+	save_village_data_local(to_json(this_village_data), "res://villages/%s.json" % this_village_data['name'])
 
 func download_villages():
 	print("Downloading village list from SilentWolf")

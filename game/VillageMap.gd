@@ -79,10 +79,10 @@ func parse_village_data(village_data):
 				house_maps[house_id]['objects'][id] = object
 				house_maps[house_id]['objects'][id]['type'] = object_type
 				
-	print("Village Map...")
-	print(village_map)
-	print("House Maps...")
-	print(house_maps)
+#	print("Village Map...")
+#	print(village_map)
+#	print("House Maps...")
+#	print(house_maps)
 	
 	
 #{
