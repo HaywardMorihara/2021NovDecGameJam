@@ -22,7 +22,6 @@ margin_left = 56.0
 margin_top = 42.0
 margin_right = 176.0
 margin_bottom = 82.0
-custom_colors/default_color = Color( 1, 0, 0, 1 )
 text = "Christmas Village Creator"
 
 [node name="Snowfall" parent="." instance=ExtResource( 3 )]

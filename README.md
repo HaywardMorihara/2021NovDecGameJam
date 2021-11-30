@@ -6,4 +6,4 @@
 ### SFX
 - Snow Footsteps - Corsica_S (https://opengameart.org/content/42-snow-and-gravel-footsteps)
 ### Font
-- Silver - https://poppyworks.itch.io/silver
+- Octavius - https://www.dafont.com/octavius.font
