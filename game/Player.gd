@@ -6,8 +6,9 @@ var velocity = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	if Global.just_started:
+		$CanvasLayer/PopupNotice.set_text("Welcome to the village!")
+		$CanvasLayer/PopupNotice.popup()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -7,6 +7,7 @@ var is_house_placement_mode := false
 var in_house: String
 var coming_from: String
 var is_paused := false
+var just_started := true
 
 func _ready():
 	var api_key_file = File.new()

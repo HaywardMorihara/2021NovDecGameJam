@@ -14,3 +14,5 @@ func _on_InGameMenu_about_to_show():
 	print("Pausing the game")
 	Global.is_paused = true
 	get_tree().paused = true
+	$SaveButton.disabled = false
+	$SaveButton.text = "Save"
