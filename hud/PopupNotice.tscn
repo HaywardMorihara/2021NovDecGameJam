@@ -17,10 +17,15 @@ script = ExtResource( 2 )
 [node name="RichTextLabel" parent="." instance=ExtResource( 1 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = 8.0
-margin_right = -8.0
-margin_bottom = -36.0
+margin_left = -23.0
+margin_top = -38.0
+margin_right = 47.0
+margin_bottom = 7.0
+text = "Place objects ('E') and create your own Christmas Village.
+
+Save your village with 'ESC' -> 'Save'. You AND others can visit it later!
+
+WARNING: Anyone can edit anyone's village - please be polite!"
 
 [node name="Button" parent="." instance=ExtResource( 3 )]
 margin_left = 55.0
