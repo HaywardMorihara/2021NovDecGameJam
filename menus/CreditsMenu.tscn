@@ -21,6 +21,12 @@ margin_left = 5.0
 margin_top = 5.0
 margin_right = -5.0
 margin_bottom = 120.0
+text = "Credits:
+
+Music: https://opengameart.org/content/deck-the-halls-christmas-song-203
+
+Font: https://www.dafont.com/octavius.font
+"
 
 [node name="Button" parent="." instance=ExtResource( 4 )]
 margin_left = 85.0
