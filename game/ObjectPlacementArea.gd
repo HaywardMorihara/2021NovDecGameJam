@@ -62,6 +62,8 @@ func _unhandled_input(event):
 				_enter_placement_mode()
 		if event.is_action_pressed("ui_right"):
 			_cycle_right()
+		if event.is_action_pressed("ui_left"):
+			_cycle_left()
 	
 		
 func _enter_placement_mode():
@@ -174,7 +176,6 @@ func _init_object_for_placement():
 	add_child(object_for_placement)
 
 func _cycle_right():
-	print("Changing object to be placed...")
 	if not Global.is_house_placement_mode:
 		if object_scene_current_index + 1 == len(PlaceableObjects.OBJECTS_FOR_PLACEMENT):
 			object_scene_current_index = 0
@@ -184,5 +185,18 @@ func _cycle_right():
 		if house_scene_current_index + 1 == len(PlaceableObjects.HOUSES_FOR_PLACEMENT):
 			house_scene_current_index = 0
 		else:
-			house_scene_current_index = 0
+			house_scene_current_index += 1
+	_init_object_for_placement()
+
+func _cycle_left():
+	if not Global.is_house_placement_mode:
+		if object_scene_current_index - 1 < 0:
+			object_scene_current_index = len(PlaceableObjects.OBJECTS_FOR_PLACEMENT) - 1
+		else:
+			object_scene_current_index -= 1
+	if Global.is_house_placement_mode:
+		if house_scene_current_index - 1 < 0:
+			house_scene_current_index = len(PlaceableObjects.HOUSES_FOR_PLACEMENT) - 1
+		else:
+			house_scene_current_index -= 1
 	_init_object_for_placement()

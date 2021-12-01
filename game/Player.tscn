@@ -14,35 +14,35 @@ height = 0.0
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
-region = Rect2( 128, 0, 16, 16 )
+region = Rect2( 192, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
-region = Rect2( 144, 0, 16, 16 )
+region = Rect2( 208, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 2 )
-region = Rect2( 160, 0, 16, 16 )
+region = Rect2( 224, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 2 )
-region = Rect2( 176, 0, 16, 16 )
+region = Rect2( 240, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 2 )
-region = Rect2( 192, 0, 16, 16 )
+region = Rect2( 128, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 2 )
-region = Rect2( 208, 0, 16, 16 )
+region = Rect2( 144, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 2 )
-region = Rect2( 224, 0, 16, 16 )
+region = Rect2( 160, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 2 )
-region = Rect2( 240, 0, 16, 16 )
+region = Rect2( 176, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 2 )
@@ -84,12 +84,12 @@ region = Rect2( 48, 0, 16, 16 )
 animations = [ {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
-"name": "left",
+"name": "right",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
-"name": "right",
+"name": "left",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 10 ) ],
@@ -149,7 +149,7 @@ __meta__ = {
 margin_right = 200.0
 margin_bottom = 24.0
 mouse_filter = 2
-text = "'Q' - Toggle This Menu"
+text = "'Q' - Toggle Hints"
 
 [node name="HUDLine2" parent="CanvasLayer/HUDLines" instance=ExtResource( 5 )]
 margin_top = 15.0
@@ -175,6 +175,11 @@ margin_top = 60.0
 margin_right = 113.0
 margin_bottom = 100.0
 mouse_filter = 2
+
+[node name="HUDLine6" parent="CanvasLayer/HUDLines" instance=ExtResource( 5 )]
+margin_top = 75.0
+margin_right = 153.0
+margin_bottom = 115.0
 
 [node name="PopupNotice" parent="CanvasLayer" instance=ExtResource( 7 )]
 
