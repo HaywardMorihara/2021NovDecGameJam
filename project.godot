@@ -26,9 +26,10 @@ VillageMap="*res://game/VillageMap.gd"
 
 window/size/width=240
 window/size/height=160
-window/size/test_width=960
-window/size/test_height=640
-window/stretch/mode="viewport"
+window/size/test_width=720
+window/size/test_height=480
+window/dpi/allow_hidpi=true
+window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
 [importer_defaults]
@@ -116,5 +117,4 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-2d/snapping/use_gpu_pixel_snap=true
 environment/default_environment="res://default_env.tres"
