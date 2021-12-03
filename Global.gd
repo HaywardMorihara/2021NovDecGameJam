@@ -8,6 +8,7 @@ var in_house: String
 var coming_from: String
 var is_paused := false
 var just_started := true
+var is_player_movement_enabled := true
 
 func _ready():
 	var api_key_file = File.new()

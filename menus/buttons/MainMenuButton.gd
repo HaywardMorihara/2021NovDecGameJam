@@ -6,4 +6,5 @@ func _on_MainMenuButton_pressed():
 	Global.is_removal_mode = false
 	Global.is_house_placement_mode = false
 	Global.just_started = true
+	Global.is_player_movement_enabled = true
 	get_tree().change_scene("res://menus/MainMenu.tscn")

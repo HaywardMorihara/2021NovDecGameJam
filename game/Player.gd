@@ -16,7 +16,7 @@ func _process(delta):
 func _get_input():
 	velocity = Vector2.ZERO
 	
-	if Global.is_placement_mode:
+	if Global.is_placement_mode or not Global.is_player_movement_enabled:
 		return
 	
 	if Input.is_action_pressed('ui_right'):
