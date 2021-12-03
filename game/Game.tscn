@@ -109,6 +109,8 @@ position = Vector2( 0, 56 )
 [node name="ObjectPlacementArea" parent="YSort" instance=ExtResource( 3 )]
 
 [node name="Particles2D" parent="." instance=ExtResource( 4 )]
+visibility_rect = Rect2( -1313.7, -1199.17, 2633.98, 2576.47 )
+local_coords = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
