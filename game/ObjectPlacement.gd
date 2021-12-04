@@ -21,7 +21,7 @@ func _draw():
 			draw_circle(Vector2.ZERO, shape.radius, color)
 
 func _unhandled_input(event):
-	if event.is_action_pressed("toggle_removal_mode"):
+	if event.is_action_pressed("toggle_removal_mode") or event.is_action_pressed("toggle_placement_mode"):
 		update()
 
 func _on_Area2D_input_event(viewport, event, shape_idx):

@@ -3,23 +3,6 @@ extends Popup
 var is_in_edit_mode := false
 var id := ""
 
-#{
-#	"objects": {
-#		"32141": {
-#			"type": "001"
-#			"x": 0.0,
-#			"y": 0.0
-#		} 
-#	},
-#	"houses": {
-#		"634712846": {
-#			"type": "001",
-#			"x": 10.0,
-#			"y": 10.0
-#		}
-#	}
-#}
-
 func _on_SignPostPopup_about_to_show():
 	if not Global.in_house and VillageMap.village_map.objects[id].get('text'):
 		$RichTextLabel.text = VillageMap.village_map.objects[id].text
@@ -52,4 +35,3 @@ func _on_EditSignButton_pressed():
 			VillageMap.village_map.objects[id].text = $RichTextLabel.text 
 		elif Global.in_house:
 			VillageMap.house_maps[Global.in_house].objects[id].text = $RichTextLabel.text
-		print("Saved, house maps now: %s" % VillageMap.house_maps[Global.in_house])
