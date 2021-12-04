@@ -159,8 +159,8 @@ func _remove_object(type, id):
 			print("Removing from the objects of the village map")
 			var was_erased = VillageMap.village_map['objects'].erase(id)
 			print("Was erased: %s" % was_erased)
-		print("Current village map: %s" % VillageMap.village_map)
-		print("Current hosue maps: %s" % VillageMap.house_maps)
+#		print("Current village map: %s" % VillageMap.village_map)
+#		print("Current hosue maps: %s" % VillageMap.house_maps)
 
 func _init_object_for_placement():
 	if object_for_placement and is_instance_valid(object_for_placement):
