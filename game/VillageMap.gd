@@ -49,6 +49,8 @@ func parse_village_data(village_data):
 			var id = str(object.hash())
 			village_map['objects'][id] = object
 			village_map['objects'][id]['type'] = object_type
+			if object.get('text'):
+				village_map['objects'][id]['text'] = object.get('text')
 	# Parse Village Houses
 	var village_houses = village_data.get('village').get('houses')
 	for house_type in village_houses.keys():
@@ -78,6 +80,8 @@ func parse_village_data(village_data):
 				var id = str(object.hash())
 				house_maps[house_id]['objects'][id] = object
 				house_maps[house_id]['objects'][id]['type'] = object_type
+				if object.get('text'):
+					house_maps[house_id]['objects'][id]['text'] = object.get('text')
 				
 #	print("Village Map...")
 #	print(village_map)
@@ -128,10 +132,17 @@ func serialize_village_data():
 		var object_data = village_map.get('objects').get(object_id)
 		if not latest_serialized_village_data['village']['objects'].has(object_data.get('type')):
 			latest_serialized_village_data['village']['objects'][object_data.get('type')] = []
-		latest_serialized_village_data['village']['objects'][object_data.get('type')].append({
-			"x": object_data.get('x'),
-			"y": object_data.get('y')
-		})
+		if object_data.get('text'):
+			latest_serialized_village_data['village']['objects'][object_data.get('type')].append({
+				"x": object_data.get('x'),
+				"y": object_data.get('y'),
+				"text": object_data.get('text')
+			})
+		else:
+			latest_serialized_village_data['village']['objects'][object_data.get('type')].append({
+				"x": object_data.get('x'),
+				"y": object_data.get('y')
+			})
 	for house_id in village_map.get('houses').keys():
 		var house_data = village_map.get('houses').get(house_id)
 		if not latest_serialized_village_data['village']['houses'].has(house_data.get('type')):
@@ -147,8 +158,15 @@ func serialize_village_data():
 			var object_data = house_maps.get(house_id).get('objects').get(object_id)
 			if not latest_serialized_village_data['houses'][house_id]['objects'].has(object_data.get('type')):
 				latest_serialized_village_data['houses'][house_id]['objects'][object_data.get('type')] = []
-			latest_serialized_village_data['houses'][house_id]['objects'][object_data.get('type')].append({
-				"x": object_data.get('x'),
-				"y": object_data.get('y')
-			})
+			if object_data.get('text'):
+				latest_serialized_village_data['houses'][house_id]['objects'][object_data.get('type')].append({
+					"x": object_data.get('x'),
+					"y": object_data.get('y'),
+					"text": object_data.get('text')
+				})
+			else:
+				latest_serialized_village_data['houses'][house_id]['objects'][object_data.get('type')].append({
+					"x": object_data.get('x'),
+					"y": object_data.get('y')
+				})
 	return

@@ -5,7 +5,6 @@
 [ext_resource path="res://menus/buttons/Button.tscn" type="PackedScene" id=3]
 
 [node name="SignPostPopup" type="Popup"]
-visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -16,6 +15,7 @@ margin_bottom = 40.0
 
 [node name="RichTextLabel" parent="." instance=ExtResource( 2 )]
 margin_right = 100.0
+text = ""
 
 [node name="EditSignButton" parent="." instance=ExtResource( 3 )]
 margin_left = 30.0

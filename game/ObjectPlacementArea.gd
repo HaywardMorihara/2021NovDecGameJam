@@ -122,7 +122,7 @@ func _place_object(type_id, global_pos, id=""):
 	if type_id[0] == 'h':
 		object.id = id
 	add_child(object)
-	if not Global.in_house.empty():
+	if not Global.in_house.empty() and not VillageMap.house_maps[Global.in_house]['objects'].get(id):
 		VillageMap.house_maps[Global.in_house]['objects'][id] = {
 			"type": type_id,
 			"x": global_pos.x,
@@ -131,13 +131,13 @@ func _place_object(type_id, global_pos, id=""):
 #		print("Current map: %s" % VillageMap.house_maps[Global.in_house])
 	else:
 #		print("Adding %s of type %s to the VillageMap" % [id, type_id])
-		if type_id[0] == 'h':
+		if type_id[0] == 'h' and not VillageMap.village_map['houses'].get(id):
 			VillageMap.village_map['houses'][id] = {
 				"type": type_id,
 				"x": global_pos.x,
 				"y": global_pos.y
 			}
-		else:
+		elif not VillageMap.village_map['objects'].get(id):
 			VillageMap.village_map['objects'][id] = {
 				"type": type_id,
 				"x": global_pos.x,
