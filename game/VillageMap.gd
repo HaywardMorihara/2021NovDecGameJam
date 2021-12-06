@@ -23,6 +23,8 @@ func reset():
 	latest_serialized_village_data = {}
 
 func parse_village_data(village_data):
+#	print("PARSING:")
+#	print(village_data)
 	# Parsed Village Data
 #{
 #	"objects": {
@@ -83,9 +85,9 @@ func parse_village_data(village_data):
 				if object.get('text'):
 					house_maps[house_id]['objects'][id]['text'] = object.get('text')
 				
-#	print("Village Map...")
+#	print("PARSED: Village Map...")
 #	print(village_map)
-#	print("House Maps...")
+#	print("PARSED: House Maps...")
 #	print(house_maps)
 	
 	
@@ -117,6 +119,10 @@ func parse_village_data(village_data):
 #	}	
 #}
 func serialize_village_data():
+#	print("SERIALIZING: Village Map...")
+#	print(village_map)
+#	print("SERIALIZING: House Maps...")
+#	print(house_maps)
 	latest_serialized_village_data = {
 		"id": village_id,
 		"name": village_name,
@@ -169,4 +175,6 @@ func serialize_village_data():
 					"x": object_data.get('x'),
 					"y": object_data.get('y')
 				})
+#	print("SERIALIZED:")
+#	print(latest_serialized_village_data)
 	return
