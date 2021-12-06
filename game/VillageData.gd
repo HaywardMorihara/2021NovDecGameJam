@@ -54,4 +54,16 @@ func download_villages():
 func download_village_data(village_id):
 	print("Fetching village data for %s" % village_id)
 	yield(SilentWolf.Players.get_player_data(village_id), "sw_player_data_received")
-	latest_village_data = parse_json(SilentWolf.Players.player_data)
+	if SilentWolf.Players.player_data:
+		latest_village_data = parse_json(SilentWolf.Players.player_data)
+	else:
+		latest_village_data = {
+			"id": village_id,
+			"village": {
+				"objects": {},
+				"houses": {}
+			},
+			"houses": {
+				
+			}
+		}

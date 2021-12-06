@@ -34,6 +34,11 @@ position = Vector2( 0, 7 )
 shape = SubResource( 3 )
 
 [node name="SignPostPopup" parent="." instance=ExtResource( 4 )]
+visible = true
+margin_left = -47.0
+margin_top = -79.0
+margin_right = -47.0
+margin_bottom = -79.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

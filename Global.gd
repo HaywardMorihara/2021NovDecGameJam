@@ -22,11 +22,3 @@ func _ready():
 		"game_version": "0.0.1",
 		"log_level": 1
 	})
-	
-	# DEBUG Trying to Delete Player Data
-#	SilentWolf.Players.delete_all_player_data("923e194f-d19b-4d35-83fd-598d61")
-#	SilentWolf.Players.post_player_data("923e194f-d19b-4d35-83fd-598d61", {})
-	
-	# DEBUG Fix Data
-#	var villages := [{"id": "923e194f-d19b-4d35-83fd-598d61", "name": "Test 1"}]
-#	VillageData.upload_villages(villages)

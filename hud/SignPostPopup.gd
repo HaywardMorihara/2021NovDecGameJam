@@ -3,6 +3,9 @@ extends Popup
 var is_in_edit_mode := false
 var id := ""
 
+func enable():
+	_on_SignPostPopup_about_to_show()
+
 func _on_SignPostPopup_about_to_show():
 	if not Global.in_house and VillageMap.village_map.objects[id].get('text'):
 		$RichTextLabel.text = VillageMap.village_map.objects[id].text
