@@ -13,10 +13,27 @@ func _ready():
 		"log_level": 1
 	})
 	
-	# FIND & DELTE Village
+	# FIND & DELETE Village
+	var village_name_to_delete := "Test 2"
+	var village_id_to_delete := ""
+	var village_to_delete
 	yield(SilentWolf.Players.get_player_data("villages"), "sw_player_data_received")
-	var villages_data = SilentWolf.Players.player_data
-	# TODO
+	var villages_data = SilentWolf.Players.player_data.villages
+	for village in villages_data:
+		if village.name == village_name_to_delete:
+			village_id_to_delete = village.id
+			village_to_delete = village
+		break
+	print("Village to Delete:")
+	print(village_id_to_delete)
+	print(village_name_to_delete)
+	villages_data.erase(village_to_delete)
+	print("New list:")
+	print(villages_data)
+	# POST new list
+	SilentWolf.Players.post_player_data("villages", {"villages": villages_data})
+	# DELETE Village
+	SilentWolf.Players.delete_all_player_data(village_id_to_delete)
 	
 	# GET Villages Data
 #	yield(SilentWolf.Players.get_player_data("villages"), "sw_player_data_received")
