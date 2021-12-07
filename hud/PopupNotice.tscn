@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/sprites/parchment-menu.png" type="Texture" id=4]
 
 [node name="PopupNotice" type="Popup"]
-visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
