@@ -1,4 +1,4 @@
-extends Control
+extends CenterContainer
 
 var BUTTON_SCENE = preload("res://menus/buttons/LoadVillageButton.tscn")
 

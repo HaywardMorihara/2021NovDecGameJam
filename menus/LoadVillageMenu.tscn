@@ -4,9 +4,14 @@
 [ext_resource path="res://menus/SnowBackground.tscn" type="PackedScene" id=3]
 [ext_resource path="res://menus/LoadVillageMenu.gd" type="Script" id=4]
 
-[node name="Control" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="CenterContainer" type="CenterContainer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -120.0
+margin_right = 120.0
+margin_bottom = 160.0
+grow_horizontal = 2
+size_flags_horizontal = 4
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -15,12 +20,18 @@ __meta__ = {
 [node name="SnowBackground" parent="." instance=ExtResource( 3 )]
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 240.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 240, 160 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_right = 240.0
+margin_bottom = 160.0
+grow_horizontal = 2
+rect_min_size = Vector2( 240, 160 )
+size_flags_horizontal = 4
 
 [node name="Snowfall" parent="." instance=ExtResource( 2 )]

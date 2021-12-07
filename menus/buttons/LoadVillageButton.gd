@@ -4,7 +4,9 @@ var village_id := ""
 var village_name := ""
 
 func _ready():
-	text = village_name
+	text = village_name.left(30)
+	if len(village_name) > 30:
+		text = text + "..."
 
 func _on_Button_pressed():
 	VillageMap.reset()
