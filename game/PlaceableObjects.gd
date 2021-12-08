@@ -10,6 +10,7 @@ const OBJECTS_FOR_PLACEMENT := {
 
 const HOUSES_FOR_PLACEMENT := {
 	"h001": preload("res://game/houses/House.tscn"),	
+	"h002": preload("res://game/houses/House2.tscn"),
 }
 
 var OBJECTS_FOR_PLACEMENT_KEYS := OBJECTS_FOR_PLACEMENT.keys()
