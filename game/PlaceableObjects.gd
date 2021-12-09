@@ -6,6 +6,7 @@ const OBJECTS_FOR_PLACEMENT := {
 	"002": preload("res://game/objects/Tree1.tscn"),
 	"003": preload("res://game/objects/BigTree.tscn"),
 	"004": preload("res://game/objects/SignPost.tscn"),
+	"005": preload("res://game/objects/Snowman.tscn"),
 }
 
 const HOUSES_FOR_PLACEMENT := {
