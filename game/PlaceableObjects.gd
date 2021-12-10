@@ -9,6 +9,8 @@ const OBJECTS_FOR_PLACEMENT := {
 	"005": preload("res://game/objects/Snowman.tscn"),
 	"006": preload("res://game/objects/Table.tscn"),
 	"007": preload("res://game/objects/HotChocolate.tscn"),
+	"008": preload("res://game/objects/CouchHorizontal.tscn"),
+	"009": preload("res://game/objects/CouchVertical.tscn"),
 }
 
 const HOUSES_FOR_PLACEMENT := {
