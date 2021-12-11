@@ -192,6 +192,5 @@ margin_bottom = 130.0
 mouse_filter = 2
 
 [node name="PopupNotice" parent="CanvasLayer" instance=ExtResource( 7 )]
-visible = false
 
 [connection signal="about_to_show" from="CanvasLayer/InGameMenu" to="CanvasLayer/InGameMenu" method="_on_InGameMenu_about_to_show"]

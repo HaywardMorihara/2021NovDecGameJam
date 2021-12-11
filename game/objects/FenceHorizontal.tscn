@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/sprites/fence.png" type="Texture" id=1]
+[ext_resource path="res://game/ObjectPlacement.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/sprites/fence-shadow.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1, 12 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 7.0
+
+[node name="FenceHorizontal" type="StaticBody2D"]
+
+[node name="Shadow" type="Sprite" parent="."]
+z_index = -1
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 32, 0, 16, 32 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 0, 16, 32 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="ObjectPlacement" parent="." instance=ExtResource( 2 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectPlacement"]
+position = Vector2( 0, -3 )
+shape = SubResource( 2 )
