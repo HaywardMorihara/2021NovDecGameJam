@@ -14,6 +14,7 @@ const OBJECTS_FOR_PLACEMENT := {
 	"010": preload("res://game/objects/FenceHorizontal.tscn"),
 	"011": preload("res://game/objects/FenceVertical.tscn"),
 	"012": preload("res://game/objects/Bench.tscn"),
+	"013": preload("res://game/objects/StreetSignPost.tscn"),
 }
 
 const HOUSES_FOR_PLACEMENT := {
