@@ -16,6 +16,16 @@ const OBJECTS_FOR_PLACEMENT := {
 	"012": preload("res://game/objects/Bench.tscn"),
 	"013": preload("res://game/objects/StreetSignPost.tscn"),
 	"014": preload("res://game/objects/Chair.tscn"),
+	"015": preload("res://game/objects/Present1.tscn"),
+	"016": preload("res://game/objects/Present2.tscn"),
+	"017": preload("res://game/objects/Present3.tscn"),
+	"018": preload("res://game/objects/Present4.tscn"),
+	"019": preload("res://game/objects/ChristmasLightsHorizontal.tscn"),
+	"020": preload("res://game/objects/ChristmasLightsHorizontalLeftHalf.tscn"),
+	"021": preload("res://game/objects/ChristmasLightsHorizontalRightHalf.tscn"),
+	"022": preload("res://game/objects/ChristmasLightsVertical.tscn"),
+	"023": preload("res://game/objects/ChristmasLightsVerticalTopHalf.tscn"),
+	"024": preload("res://game/objects/ChristmasLightsVerticalBottomHalf.tscn"),
 }
 
 const HOUSES_FOR_PLACEMENT := {
