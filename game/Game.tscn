@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/sprites/snow-tilemap.png" type="Texture" id=1]
 [ext_resource path="res://game/Player.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://game/Snowfall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://game/Game.gd" type="Script" id=5]
 [ext_resource path="res://assets/sprites/small-tree.png" type="Texture" id=6]
-[ext_resource path="res://assets/sound/music/Deck the Halls.ogg" type="AudioStream" id=8]
 [ext_resource path="res://assets/sprites/path-tilemap.png" type="Texture" id=10]
 
 [sub_resource type="TileSet" id=1]
@@ -113,6 +112,3 @@ position = Vector2( 0, 56 )
 [node name="Particles2D" parent="." instance=ExtResource( 4 )]
 visibility_rect = Rect2( -1313.7, -1199.17, 2633.98, 2576.47 )
 local_coords = false
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )

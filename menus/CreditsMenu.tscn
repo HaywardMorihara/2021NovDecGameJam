@@ -25,7 +25,9 @@ text = "Credits:
 
 Music: https://opengameart.org/content/deck-the-halls-christmas-song-203
 
-Font: https://www.dafont.com/octavius.font
+Font: https://www.dafont.com/octavius.font'
+
+Sound: https://soundbible.com/1543-Fireplace.html
 "
 
 [node name="Button" parent="." instance=ExtResource( 4 )]

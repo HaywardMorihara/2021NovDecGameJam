@@ -165,7 +165,7 @@ tile_data = PoolIntArray( 131075, 0, 0, 131076, 0, 1, 131077, 0, 65537, 131078, 
 
 [node name="Fireplace" parent="YSort" instance=ExtResource( 7 )]
 position = Vector2( 119, 41 )
-frame = 1
+frame = 2
 
 [node name="Exit" type="Area2D" parent="."]
 position = Vector2( 120, 168 )
