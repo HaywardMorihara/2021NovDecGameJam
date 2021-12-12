@@ -11,6 +11,9 @@ config_version=4
 [application]
 
 config/name="Christmas Village Creator"
+config/description="Place over 25 different Christmas-themed objects and decorate your own \"Christmas Village\".
+
+Save it, share it with others, and visit their villages to see what they made."
 run/main_scene="res://menus/MainMenu.tscn"
 config/icon="res://icon.png"
 
