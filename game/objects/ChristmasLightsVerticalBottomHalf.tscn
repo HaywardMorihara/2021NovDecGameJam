@@ -34,7 +34,6 @@ height = 1.97974
 [node name="ChristmasLightsVerticalBottomHalf" type="AnimatedSprite"]
 z_index = 1
 frames = SubResource( 5 )
-frame = 3
 playing = true
 
 [node name="ObjectPlacement" parent="." instance=ExtResource( 1 )]

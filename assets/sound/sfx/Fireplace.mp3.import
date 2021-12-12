@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Fireplace.mp3-7d36ba0f0ed0b7d3856d214af00364b7.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/sfx/Fireplace.mp3"
+dest_files=[ "res://.import/Fireplace.mp3-7d36ba0f0ed0b7d3856d214af00364b7.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

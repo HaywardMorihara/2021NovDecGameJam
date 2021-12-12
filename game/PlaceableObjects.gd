@@ -26,6 +26,9 @@ const OBJECTS_FOR_PLACEMENT := {
 	"022": preload("res://game/objects/ChristmasLightsVertical.tscn"),
 	"023": preload("res://game/objects/ChristmasLightsVerticalTopHalf.tscn"),
 	"024": preload("res://game/objects/ChristmasLightsVerticalBottomHalf.tscn"),
+	"025": preload("res://game/objects/Wreath.tscn"),
+	"026": preload("res://game/objects/Stocking.tscn"),
+	"027": preload("res://game/objects/Rug.tscn"),
 }
 
 const HOUSES_FOR_PLACEMENT := {
