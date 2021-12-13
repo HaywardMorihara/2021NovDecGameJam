@@ -22,7 +22,10 @@ func _ready():
 #		delete_village(village.name)
 	
 	# FIND & DELETE Village
-#	delete_village("Demo for Jenna")
+#	delete_village("GAY-CUM-ZONE")
+	
+	# DELETE Village by ID
+	delete_village_by_id("")
 	
 	# GET Villages Data
 #	yield(SilentWolf.Players.get_player_data("villages"), "sw_player_data_received")
@@ -46,6 +49,9 @@ func _ready():
 #	var villages := [{"id": "923e194f-d19b-4d35-83fd-598d61", "name": "Test 1"}]
 #	VillageData.upload_villages(villages)
 
+func delete_village_by_id(village_id_to_delete):
+	SilentWolf.Players.delete_all_player_data(village_id_to_delete)
+
 func delete_village(village_name_to_delete):
 	var village_id_to_delete := ""
 	var village_to_delete
@@ -55,14 +61,14 @@ func delete_village(village_name_to_delete):
 		if village.name == village_name_to_delete:
 			village_id_to_delete = village.id
 			village_to_delete = village
-		break
+			break
 	print("Village to Delete:")
 	print(village_id_to_delete)
 	print(village_name_to_delete)
 	villages_data.erase(village_to_delete)
 	print("New list:")
 	print(villages_data)
-	# POST new list
-	SilentWolf.Players.post_player_data("villages", {"villages": villages_data})
 	# DELETE Village
 	SilentWolf.Players.delete_all_player_data(village_id_to_delete)
+	# POST new list
+	SilentWolf.Players.post_player_data("villages", {"villages": villages_data})
